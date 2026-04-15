@@ -1,0 +1,11 @@
+id,title,description,priority,openedAt,occurredAt,requester,department,createdAt,assignedTo,assignedAt,updatedAt,closedAt,resolvedAt,status
+TCK-001,Erreur de connexion,Impossible de se connecter à l'application,HIGH,2026-04-01T08:30:00,2026-04-01T08:00:00,Jean Dupont,IT,2026-04-01T08:35:00,Paul Admin,2026-04-01T09:00:00,2026-04-01T10:00:00,2026-04-01T12:00:00,2026-04-01T11:30:00,RESOLVED
+TCK-002,Problème d'impression,L'imprimante ne répond pas,MEDIUM,2026-04-02T09:15:00,2026-04-02T09:00:00,Marie Ndzi,Support,2026-04-02T09:20:00,Luc Tech,2026-04-02T09:45:00,2026-04-02T10:30:00,,,IN_PROGRESS
+TCK-003,Demande d'accès,Besoin d'accès au serveur,LOW,2026-04-03T10:00:00,2026-04-03T09:50:00,Eric Ndzi,IT,2026-04-03T10:05:00,,,2026-04-03T10:10:00,,,OPEN
+TCK-004,Application lente,L'application met du temps à charger,HIGH,2026-04-04T11:00:00,2026-04-04T10:30:00,Sophie Mballa,Finance,2026-04-04T11:05:00,Paul Admin,2026-04-04T11:30:00,2026-04-04T12:00:00,2026-04-04T14:00:00,2026-04-04T13:30:00,CLOSED
+TCK-005,Erreur système,Message d'erreur inattendu,CRITICAL,2026-04-05T14:00:00,2026-04-05T13:45:00,David Nkong,IT,2026-04-05T14:05:00,Luc Tech,2026-04-05T14:20:00,2026-04-05T15:00:00,,,IN_PROGRESS
+
+547852e7-5c52-41d1-a6d1-cbc3ea682403,Imprimante en panne,L'imprimante n'imprime plus,LOW,2026-04-15T00:22:09.684073500,2026-04-01T12:30,M Conclusion,Service Communication,2026-04-15T00:22:09.684073500,null,,,,,OPEN
+7dfc77b6-7e15-42ae-b8e2-85599efc6e42,Imprimante en panne,L'imprimante n'imprime plus,LOW,2026-04-15T00:33:06.268303700,2026-04-01T12:30,M Conclusion,Service Communication,2026-04-15T00:33:06.268303700,null,,,,,OPEN
+
+f9d96c39-bbfd-4a4b-827b-16f4320fded4,Imprimante en panne,L'imprimante n'imprime plus,LOW,2026-04-15T00:43:43.591032300,2026-04-01T12:30,M Conclusion,Service Communication,2026-04-15T00:43:43.591032300,null,,,,,OPEN

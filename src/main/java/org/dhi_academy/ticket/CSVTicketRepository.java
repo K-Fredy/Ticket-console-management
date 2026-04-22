@@ -6,11 +6,13 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-public class CSVTicketRepository {
+public class CSVTicketRepository implements TicketRepository{
 
-    private static final String FILE_NAME = "tickets.csv";
+    private static final String FILE_NAME = "ticket.csv";
 
-    public Set<Ticket> getTikects(){
+
+    @Override
+    public Set<Ticket> getTickets(){
 
         Set<Ticket> tickets = new HashSet<>();
 
@@ -74,6 +76,9 @@ public class CSVTicketRepository {
     }
 
 
+
+    // Enregistrement des ticket sur un fichier csv
+    @Override
     public void saveTikect(Ticket ticket){
 
         try {
@@ -92,6 +97,8 @@ public class CSVTicketRepository {
         }
 
     }
+
+
 
     private String writeTicket(Ticket ticket){
 
@@ -116,8 +123,109 @@ public class CSVTicketRepository {
         return String.join(",", strings) ;
     }
 
-    public Set<Ticket> deleteTikect(){
-        return null;
+
+    @Override
+    public void deleteTicket(String id) {
+        // Récupérer tous les tickets
+        Set<Ticket> tickets = getTickets();
+
+        // Trouver et supprimer le ticket avec cet ID
+        boolean supprime = tickets.removeIf(ticket -> ticket.getId().equals(id));
+
+        if (!supprime) {
+            System.out.println("Aucun ticket trouvé avec l'ID : " + id);
+            return;
+        }
+
+        // Réécrire tout le fichier CSV sans le ticket supprimé
+        try {
+            FileWriter fileWriter = new FileWriter(FILE_NAME, false); // false = écraser
+            BufferedWriter writer = new BufferedWriter(fileWriter);
+
+            // Réécrire le header
+            writer.write("id,title,description,priority,openedAt,occurredAt," +
+                    "requester,department,createdAt,assignedTo,assignedAt," +
+                    "updatedAt,closedAt,resolvedAt,status\n");
+
+            // Réécrire les tickets restants
+            for (Ticket ticket : tickets) {
+                writer.write(writeTicket(ticket) + "\n");
+            }
+
+            writer.close();
+            System.out.println("Ticket avec l' ID " + id + " supprimé avec succès !");
+
+        } catch (IOException e) {
+            System.out.println(" Erreur lors de la suppression : " + e.getMessage());
+        }
+
+
+
+
+    }
+
+    @Override
+    public void exportToCSV(String outputFilePath){
+
+        try {
+            File file = new File(outputFilePath);
+
+            FileWriter fileWriter = new FileWriter(file, false); // false = écraser
+            BufferedWriter writer = new BufferedWriter(fileWriter);
+
+            // Ecrire chaque ticket
+            Set<Ticket> tickets = getTickets();
+            int count = 0;
+            for (Ticket ticket : tickets) {
+                writer.write(writeTicket(ticket) + "\n");
+                count++;
+            }
+
+            writer.close();
+            System.out.println(count + " ticket(s) exporté(s) vers : " + outputFilePath);
+
+        } catch (IOException e) {
+            System.out.println("Erreur lors de l'export : " + e.getMessage());
+        }
+
+
+    }
+
+
+    @Override
+    public void importFromCSV(String inputFilePath){
+
+        try {
+            File file = new File(inputFilePath);
+
+            // Vérifier que le fichier existe
+            if (!file.exists()) {
+                System.out.println("Fichier introuvable : " + inputFilePath);
+                return;
+            }
+
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+
+            String line = reader.readLine(); // sauter le header
+            line = reader.readLine();
+
+            int count = 0;
+            while (line != null) {
+                if (!line.isBlank()) {
+                    Ticket ticket = parceTiket(line);
+                    saveTikect(ticket); // sauvegarder dans le CSV principal
+                    count++;
+                }
+                line = reader.readLine();
+            }
+
+            reader.close();
+            System.out.println(count + " ticket(s) importé(s) avec succès !");
+
+        } catch (IOException e) {
+            System.out.println("Erreur lors de l'import : " + e.getMessage());
+        }
+
 
     }
 

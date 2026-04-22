@@ -4,16 +4,18 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
 
 @Getter
-public class TicketManager {
+public class TicketManager{
 
-    private final CSVTicketRepository repository;
+    private final TicketRepository repository;
 
     public TicketManager(CSVTicketRepository repository)  {
         this.repository = repository;
+
     }
 
     public void openTicket(String title,
@@ -29,13 +31,9 @@ public class TicketManager {
     // recherche par titre
     public Optional<Ticket> findTicketByTitle(String query) {
 
-        for (Ticket ticket : repository.getTikects()) {
-
-            if (ticket.getTitle().contains(query)) {
-
+        for (Ticket ticket : repository.getTickets()) {
+            if (ticket.getTitle().contains(query))
                 return Optional.of(ticket);
-            }
-
         }
         return Optional.empty();
     }
@@ -43,37 +41,67 @@ public class TicketManager {
     // recherche par ID
     public Optional<Ticket> findTicketById(String id) {
 
-        for (Ticket ticket : repository.getTikects()){
-            if (ticket.getId().contains(id)) {
+        for(Ticket ticket : repository.getTickets()) {
+            if (ticket.getId().equals(id)){
                 return Optional.of(ticket);
             }
         }
-
         return Optional.empty();
-
     }
 
-    public Set<Ticket> findAllTicketByPriority(Priority priority) {
 
+    public Set<Ticket> findAllTicketByPriority(Priority priority) {
         Set<Ticket> result = new HashSet<>();
 
-        for (Ticket ticket : repository.getTikects()){
-
-            if(ticket.getPriority() == priority){
-
+        for(Ticket ticket : repository.getTickets()) {
+            if (ticket.getPriority() == priority){
                 result.add(ticket);
             }
-
         }
-
         return result;
     }
 
-    public void presentAllTicket(){
-        for (Ticket curentTicket : repository.getTikects()){
-            System.out.println(curentTicket);
+    public Set<Ticket> findAllTicketByStatus(TicketStatus status) {
+
+        Set<Ticket> result = new HashSet();
+
+        for(Ticket ticket : repository.getTickets()) {
+            if (ticket.getStatus().equals(status)){
+                result.add(ticket);
+            }
         }
+        return result;
+    }
+
+    public void presentAllTickets() {
+        for(Ticket ticket : repository.getTickets()) {
+            System.out.println(ticket);
+        }
+    }
+
+    public void deleteTicket(String id) {
+        repository.deleteTicket(id);
+    }
+
+    public void exportToCSV(String outputFilePath){
+        repository.exportToCSV(outputFilePath);
+    }
+
+    public void importFromCSV(String inputFilePath){
+        repository.importFromCSV(inputFilePath);
+    }
+
+    public void assignTicket(String id, String technicien){
+
+
 
     }
+
+    public void changeStatus(String id, TicketStatus newStatus){
+
+
+    }
+
+
 
 }

@@ -98,6 +98,30 @@ public class CSVTicketRepository implements TicketRepository{
 
     }
 
+    public void updateTicket(Ticket ticket) {
+        // Récupérer tous les tickets
+        Set<Ticket> tickets = getTickets();
+
+        try {
+            FileWriter fileWriter = new FileWriter(FILE_NAME, false); // false = écraser
+            BufferedWriter writer = new BufferedWriter(fileWriter);
+
+
+            // Réécrire tous les tickets avec le ticket modifié
+            for (Ticket t : tickets) {
+                if (t.getId().equals(ticket.getId())) {
+                    writer.write(writeTicket(ticket) + "\n"); // ← version modifiée
+                } else {
+                    writer.write(writeTicket(t) + "\n"); // ← version originale
+                }
+            }
+
+            writer.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     private String writeTicket(Ticket ticket){

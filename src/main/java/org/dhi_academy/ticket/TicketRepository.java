@@ -8,7 +8,6 @@ public interface TicketRepository {
     // Supprimer UN ticket
     void deleteTicket(String id);
 
-
     Set<Ticket> getTickets();
 
     // Enregistrement des ticket sur un fichier csv
@@ -17,4 +16,6 @@ public interface TicketRepository {
     void exportToCSV(String outputFilePath);
 
     void importFromCSV(String inputFilePath);
+
+    void updateTicket(Ticket ticket);
 }

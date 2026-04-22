@@ -93,15 +93,50 @@ public class TicketManager{
 
     public void assignTicket(String id, String technicien){
 
+        //find ticket by id
+        Optional<Ticket> optionalTicket = findTicketById(id);
 
+        if(optionalTicket.isPresent()){
+            Ticket ticket = optionalTicket.get();
 
+            ticket.setAssignedTo(technicien);
+            ticket.setAssignedAt(LocalDateTime.now());
+            ticket.setStatus(TicketStatus.IN_PROGRESS);
+
+            repository.updateTicket(ticket);
+            System.out.println("Ticket assigné à " + technicien  + " avec succès !");
+        }else {
+            System.out.println("Aucun ticket trouver avec l'id  " + id);
+        }
     }
 
     public void changeStatus(String id, TicketStatus newStatus){
 
 
-    }
+        // rechercher le ticket
+        Optional<Ticket> optionalTicket = findTicketById(id);
+        if(optionalTicket.isPresent()){
+            Ticket ticket = optionalTicket.get();
 
+            ticket.setStatus(newStatus);
+            ticket.setAssignedAt(LocalDateTime.now());
+
+            if(newStatus == TicketStatus.CLOSED){
+                ticket.setClosedAt(LocalDateTime.now());
+            }
+
+            if(newStatus == TicketStatus.RESOLVED){
+                ticket.setResolvedAt(LocalDateTime.now());
+            }
+
+            repository.updateTicket(ticket);
+            System.out.println("Status changer en" + newStatus);
+
+        }else {
+            System.out.println("Aucun ticket trouver avec l'id  " + id);
+        }
+
+    }
 
 
 }

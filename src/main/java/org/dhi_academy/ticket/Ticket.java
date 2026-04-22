@@ -2,12 +2,14 @@ package org.dhi_academy.ticket;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
+@Setter
 @Getter
 @ToString
 @EqualsAndHashCode(of = {"id"})

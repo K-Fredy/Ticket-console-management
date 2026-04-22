@@ -1,0 +1,7 @@
+id,title,description,priority,openedAt,occurredAt,requester,department,createdAt,assignedTo,assignedAt,updatedAt,closedAt,resolvedAt,status
+TCK-005,Erreur système,Message d'erreur inattendu,CRITICAL,2026-04-05T14:00,2026-04-05T13:45,David Nkong,IT,2026-04-05T14:05,Luc Tech,2026-04-05T14:20,2026-04-05T15:00,,,IN_PROGRESS
+TCK-004,Application lente,L'application met du temps à charger,HIGH,2026-04-04T11:00,2026-04-04T10:30,Sophie Mballa,Finance,2026-04-04T11:05,Paul Admin,2026-04-04T11:30,2026-04-04T12:00,2026-04-04T14:00,2026-04-04T13:30,CLOSED
+cd41e0b1-e83e-4ea9-911e-fcbac18e3eb8,PC en panne,Mon PC ne démare plus,LOW,2026-04-19T18:10:22.517067200,2026-04-17T15:30,Klode Linda,Service Administratif,2026-04-19T18:10:22.517067200,null,,,,,OPEN
+TCK-001,Erreur de connexion,Impossible de se connecter à l'application,HIGH,2026-04-01T08:30,2026-04-01T08:00,Jean Dupont,IT,2026-04-01T08:35,Paul Admin,2026-04-01T09:00,2026-04-01T10:00,2026-04-01T12:00,2026-04-01T11:30,RESOLVED
+a6005e14-f61d-47d7-a5a7-5dcd0f805b74,Imprimante en panne,L'imprimante n'imprime plus,HIGH,2026-04-19T18:10:22.520071300,2026-04-01T12:30,M Conclusion,Service RH,2026-04-19T18:10:22.520071300,null,,,,,OPEN
+de36c719-21d3-441c-8ff5-4f1dd731e5b0,Scanner en panne,L'imprimante n'imprime plus,CRITICAL,2026-04-19T18:10:22.521578300,2026-04-01T12:30,M Introduction,Direction Général,2026-04-19T18:10:22.521578300,null,,,,,OPEN

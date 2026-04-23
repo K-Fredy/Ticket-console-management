@@ -138,5 +138,12 @@ public class TicketManager{
 
     }
 
+    public Set<Ticket> getAllTickets(){
+
+        return repository.getTickets();
+    }
+
+
+
 
 }
